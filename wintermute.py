@@ -255,13 +255,14 @@ def print_input_area(screen, key):
     if key == 10:
         global cur_chat
         global chats_list
-        with app:
-            app.send_message(chats_list[cur_chat][0], input_text)
-        get_msgs()
-        print_chat_area(screen)
-        input_text = ""
-        cursor_pos = 0
-        refresh = True
+        if input_text != "":
+            with app:
+                app.send_message(chats_list[cur_chat][0], input_text)
+            get_msgs()
+            print_chat_area(screen)
+            input_text = ""
+            cursor_pos = 0
+            refresh = True
     if refresh:
         screen.clear_buffer(7, 1, 0, x, y, width, height)
         start_pos = 0
